@@ -1,0 +1,1102 @@
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+#: import webbrowser webbrowser
+# -*- coding: utf-8 -*-
+WindowManager:
+    transition: SlideTransition()
+    MainWindow:
+    SecondWindow:
+    identifyWindow:
+    wifi:
+    ThirdWindow:
+    FourthWindow:
+    FifthWindow:
+    transfer:
+    PCTs:
+    pcRestart:
+    winRestart:
+    macRestart:
+    modPlug:
+    bypassRout:
+    noResolve:
+    bypassRout:
+    checkAdapt1:
+    ispRef:
+    afterBoot:
+    pcManu:
+    macAdapt:
+
+
+#Welcome Screen
+<MainWindow>:
+    name: "start"
+    Image:
+        source: "sunset.jpeg"
+        size_hint: (1, 1)
+        opacity: .8
+        pos: 0,80
+    Label:
+        text: "Elite-Tech Troubleshooter"
+        halign: "center"
+        pos: 20,300
+        font_size: 100
+        #underline: True
+        bold: True
+        color: 0,0,0,1
+        font_name: "NIAGSOL"
+    Label:
+        text: "\"Fixing internet issues, simply.\""
+        halign: "center"
+        pos: 20,250
+        font_size: 20
+        bold: True
+        color: 0,0,0,1
+
+    Button:
+        text: "Get Started"
+        size_hint: (.5, None)
+        pos: 325, 330
+        halign: "center"
+        font_size: 46
+        background_color: 1,0,1,1
+        padding: 10,10
+        font_name: "DejaVuSans"
+        on_release:
+            app.root.current= "hsiTrP"
+            app.root.transition = SlideTransition(direction= "left")
+
+    Label:
+        text: "Developed by Romeo Gibson, 2020"
+        color: 0,0,0,1
+        font_size: 10
+        font_name: "DejaVuSans"
+        bold: True
+        pos: 50, -320
+
+
+########My Little Helper - to be removed at completion
+    #Button:
+        #text: "My little helper"
+        #size_hint: (.3, .2)
+        #pos: 0, 30
+        #on_release:
+            #app.root.current= "aftermboot"
+
+
+
+
+
+<SecondWindow>:
+    name: "hsiTrP"
+    Image:
+        source: "wifi_icon.png"
+        size_hint:(.2,.1)
+        pos: 500, 450
+    Image:
+        source: "sunset.jpeg"
+        size_hint: (1, 1)
+        opacity: .8
+        pos: 0,80
+    Label:
+        text: "We're sorry that you're having issues with your internet.\nLuckily, we're here to help!"
+        color: 0,0,0,1
+        halign: "center"
+        pos: 40, 50
+        font_size: 24
+        font_name: "DejaVuSans"
+
+    Button:
+        text: "Tap Here to Begin Troubleshooting"
+        pos: 300,100
+        size_hint: (.5, None)
+        background_color: 0,1,1,1
+        on_release:
+            app.root.current= "ident"
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "start"
+
+
+#Gathers info on the cust. PC - modem, modem - router, or modem-router combinations, etc.
+<identifyWindow>:
+    name: "ident"
+
+    Label:
+        text: "First, we need to determine your current setup."
+        color: 0,0,0,1
+        font_size: 24
+        pos: 50,300
+        halign: "center"
+
+
+    Image:
+        source: "modem_1.png"
+        size_hint:(.8,.4)
+        pos: 200, 300
+
+    Label:
+        text: "The easiest way to determine how your network is set up, is to look at the devices!\nIf you have two boxes connected to each other via ethernet, and see the COAX connection on one of those boxes,\nthis means you have a cable modem. However, your modem may only have a single ETHERNET port."
+        color: 0,0,0,1
+        font_size: 18
+        pos: 50, -100
+        halign: "center"
+    Label:
+        text: "hint: The COAX connection is identical to the same cord you would find on a Cable TV receiver"
+        font_size: 12
+        color: 1,0,0,1
+        pos: 50, -140
+
+    Button:
+        text: "This is what I have"
+        size_hint:(.4, .1)
+        background_color: 0,1,1,1
+        pos: 400, 120
+        on_release:
+            app.root.current= "rout"
+
+    Button:
+        text: "I don't have this device"
+        size_hint: (.4, .1)
+        background_color: 0,1,1,1
+        pos: 400,40
+        on_release:
+            app.root.current= "trans"
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "hsiTrP"
+
+
+<wifi>:
+    name: "rout"
+    Label:
+        text: "Great! Now, we need to identify what is connected to your Cable Modem"
+        color: 0,0,0,1
+        halign: "center"
+        pos: 50,300
+        font_size: 16
+        bold: True
+
+    Image:
+        source: "modem_1.png"
+        size_hint:(.8,.4)
+        pos: 200, 300
+
+    Label:
+        text: "Next, we need to verify what is connected to your MODEM via the ETHERNET port.\nKeep in mind, your modem may have less ethernet ports than shown in the image above."
+        color: 0,0,0,1
+        pos: 50, -90
+    Label:
+        text: "First, look on the back of your modem. You should see an ethernet cable connected (it resembles a phone line and can sometimes be yellow or blue in color)"
+        color: 0,0,0,1
+        pos: 50, -130
+#Connected to PC
+    Button:
+        text: "My Modem is connected directly to my computer"
+        background_color: 0,1,1,1
+        size_hint: (.4,.1)
+        pos: 150, 100
+        on_release:
+            app.root.current= "pc1"
+#connected to Router
+    Button:
+        text: "My modem is connected to a similar device (router)"
+        background_color: 0,1,1,1
+        size_hint: (.4,.1)
+        pos: 635, 100
+        on_release:
+            app.root.current= "hsiTr"
+#Connected to nothing
+    Button:
+        text: "My modem isn't connected to anything."
+        background_color: 0,1,1,1
+        size_hint: (.4,.1)
+        pos: 400, 10
+        on_release:
+            app.root.current= "trans"
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "ident"
+
+
+<ThirdWindow>:
+    name: "hsiTr"
+    Label:
+        text: "Ok, let's get started!"
+        color: 0,0,0,1
+        font_size: 32
+        pos: 50,300
+        halign: "center"
+
+    Label:
+        text: "We'll start by 'power-cycling' your 'router' "
+        color: 0,0,0,1
+        font_size: 24
+        halign: "center"
+        pos: 50, 200
+
+    Image:
+        source: "ethernet_port.png"
+        halign: "center"
+        pos: 180, 100
+        size_hint: (.8,.6)
+
+
+    Label:
+        text: "Take a look at the diagram above. Don't worry, it'll also be on the next step!"
+        color: 0,0,0,1
+        font_size: 18
+        pos: 50, -250
+
+    Button:
+        text: "Next"
+        background_color: 0,1,1,1
+        size_hint:(.1,.1)
+        pos: 590, 10
+        on_release:
+            app.root.current= "r1"
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "start"
+
+#Tier 1 Router Troubleshooting
+<FourthWindow>:
+    name: "r1"
+
+    Label:
+        text: "Keep in mind: Your 'router' may not resemble the image shown, however, the ports will likely be the same"
+        color: 0,0,0,1
+        pos: 110, -65
+        halign: "center"
+        color: 1,0,0,1
+
+    Image:
+        source: "ethernet_port.png"
+        halign: "center"
+        pos: 180, 280
+        size_hint: (.8,.6)
+
+    Label:
+        text: "How to power-cycle your router:"
+        color: 0,0,0,1
+        halign: "center"
+        pos: 110, -90
+        bold: True
+        underline: True
+
+    Label:
+        text: "Step 1: unplug the POWER CABLE from the POWER PORT \nStep 2: Wait 10 seconds\nStep 3: Plug the POWER CABLE into the POWER PORT of the router"
+        color: 0,0,0,1
+        halign: "left"
+        pos: 110, -135
+        font_size: 20
+
+    Label:
+        text: "Note: If the device you unplugged has a 'screw-on' cable, that is the wrong device.\nLook for the device WITHOUT the 'screw-on' cable."
+        color: 1,0,0,1
+        halign: "center"
+        pos: 110, -200
+
+    Label:
+        text: "After plugging in your router, wait for several minutes until the lights stabilize.\nOnce stabilized, try reconnecting to your wifi."
+        color: 0,0,0,1
+        halign: "center"
+        pos: 110, -250
+        font_size: 22
+
+    Button:
+        text: "Continue Troubleshooting/My Issue wasn't resolved"
+        size_hint:(.4, .1)
+        height: 5
+        pos: 450, 25
+        background_color: 0,1,1,1
+        on_release:
+            app.root.current= "r2"
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "hsiTr"
+
+#Tier 2 Troubleshooting, Modem restart is introduced.
+<FifthWindow>:
+    name: "r2"
+    Label:
+        text: "No worries! We'll try something else."
+        color: 0,0,0,1
+        font_size: 22
+        font_name: "DejaVuSans"
+        pos: 50, 300
+        bold: True
+
+    Label:
+        text: "Let's start by unplugging the POWER CABLE from the ROUTER again. This time, leave it unplugged.\nNext, unplug the POWER CABLE from the MODEM, and wait 15 seconds."
+        color: 0,0,0,1
+        font_size: 20
+        font_name: "DejaVuSans"
+        pos: 50, 250
+
+    Image:
+        source: "clock.jpg"
+        size_hint: (.3,.3)
+        pos: 450,350
+
+    Label:
+        text: "Now, plug in the modem. Once the lights on the modem stabilize ('online' is a solid color)\nPlug the POWER CABLE into the POWER PORT of the router.\nOnce your router has rebooted, try reconnecting!"
+        color: 0,0,0,1
+        halign: "center"
+        font_size: 24
+        bold: True
+        pos: 50, -30
+
+    Button:
+        text: "My issue has been resolved"
+        size_hint: (.3,.1)
+        pos: 280,100
+        background_color: 0,1,1,1
+        on_release:
+            app.root.current= "start"
+
+
+    Button:
+        text: "My issue has NOT been resolved"
+        size_hint: (.3,.1)
+        pos: 640, 100
+        background_color: 0,1,1,1
+        color: 1,0,0,1
+        on_release:
+            app.root.current= "nores"
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "r1"
+
+#When certain issues occur that can't be helped via an application, live support is necessary (cust can't find equipment
+#-- , the device has been unplugged and cust can't reconnect on their own, etc.) Button is provided to help the customer
+#---, contact their ISP to resolve the issue
+<transfer>:
+    name: "trans"
+    Image:
+        source: "sunset.jpeg"
+        size_hint: (1, 1)
+        opacity: .8
+        pos: 0,80
+    Label:
+        text: "Sorry, it seems your issue is beyond our scope of support.\nTo resolve your issue, please contact your Internet Service Provider (ISP)."
+        color: 0,0,0,1
+        font_size: 24
+        halign: "center"
+        pos: 50,300
+        bold: True
+
+    Label:
+        text: "As our last efforts to help, we've provided a link \nto find your ISP's support number if you don't already have it:"
+        color: 0,0,0,1
+        font_size: 16
+        halign: "center"
+        pos: 50, 200
+
+    Button:
+        text: "Find My ISP"
+        background_color: 0,1,1,1
+        halign: "center"
+        size_hint: (.4,.4)
+        pos: 400, 100
+        font_size: 28
+        on_release:
+            webbrowser.open("https://broadbandnow.com/")
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "start"
+
+
+
+#Modem - PC Troubleshooting
+
+<PCTs>:
+    name: "pc1"
+
+    Label:
+        text: "Ah, I see!"
+        color: 0,0,0,1
+        font_size: 32
+        pos: 70, 300
+        halign: "center"
+        font_name: "DejaVuSans"
+        bold: True
+
+    Image:
+        source: "modem_pc.png"
+        size_hint:(.6,.4)
+        pos: 300, 300
+
+    Label:
+        text: "Now that we know you have a direct connection to your modem, let's move forward!"
+        color: 0,0,0,1
+        font_size: 14
+        font_name: "DejaVuSans"
+        pos: 70, 255
+
+    Label:
+        text: "First, let's make sure that our modem only has a single ethernet port in use (by your computer).\n If you have more than one ethernet cable, check and see where it goes."
+        color: 0,0,0,1
+        font_size: 16
+        halign: "center"
+        pos: 70, -85
+        font_name: "DejaVuSans"
+
+    Label:
+        text: "Note: If you also have a router connected, you will want to go through the 'power-cycling your router' guide."
+        color: 1,0,0,1
+        font_size: 10
+        halign: "center"
+        pos: 70, -110
+    Label:
+        text: "All good? Good! Let's proceed:"
+        color: 0,0,0,1
+        font_size: 22
+        bold: True
+        halign: "center"
+        pos: 70, -140
+
+    Button:
+        text: "Tap here for the 'Power-Cycling Your Router' Guide"
+        background_color: 0,1,1,1
+        size_hint:(.3,.1)
+        pos: 750, 300
+        on_release:
+            app.root.current= "r1"
+
+    Label:
+        text: "Oh, no! Have a router after all?"
+        color: 0,0,0,1
+        font_size: 10
+        halign: "center"
+        bold: True
+        font_name: "DejaVuSans"
+        pos: 350, 32
+
+    Label:
+        text: "Step 1: Unplug the POWER CABLE from the POWER PORT of your modem.\nStep 2: Remove the ETHERNET CABLE from the ETHERNET PORT of the MODEM\nStep 3:Wait 15 seconds"
+        color: 0,0,0,1
+        font_size: 20
+        halign: "left"
+        font_name: "DejaVuSans"
+        pos: 70, -200
+    Label:
+        text: "IMPORTANT: DO NOT plug the modem back in yet! Proceed to next step FIRST."
+        color: 1,0,0,1
+        font_size: 14
+        halign: "left"
+        font_name: "DejaVuSans"
+        pos: 70, -250
+        bold: True
+
+
+    Button:
+        text: "Next"
+        background_color: 0,1,1,1
+        font_size: 20
+        halign: "center"
+        font_name: "DejaVuSans"
+        pos: 500, 5
+        size_hint: (.2,.1)
+        on_release:
+            app.root.current= "pcrest"
+
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "rout"
+
+
+
+#PC Restart
+<pcRestart>:
+    name: "pcrest"
+    Label:
+        text:"Next, we want to restart the computer BEFORE plugging in the modem."
+        color: 0,0,0,1
+        font_size: 24
+        halign: "center"
+        pos: 50, 300
+
+    Label:
+        text: "Choose your operating system:"
+        color: 0,0,0,1
+        font_size: 36
+        bold: True
+        halign:"center"
+        pos: 50, 200
+
+###LABELS***
+
+#Windows label
+    Label:
+        text:"Windows"
+        font_size: 18
+        color: 0,0,0,1
+        halign: "center"
+        bold: True
+        underline: True
+        pos: -80,-60
+
+
+    Label:
+        text: "Mac OS(Apple)"
+        font_size: 18
+        color: 0,0,0,1
+        halign: "center"
+        bold: True
+        underline: True
+        pos: 230,-60
+
+
+
+    WindowsButton:
+        source: "windows_icon.png"
+        size_hint:(.2,.2)
+        halign: "center"
+        pos: 400, 300
+        on_release:
+            app.root.current= "winrest"
+
+
+    MacButton:
+        source: "apple_icon.png"
+        size_hint:(.2,.2)
+        halign: "center"
+        pos: 700, 300
+        on_release:
+            app.root.current= "mac"
+
+    MacBoy:
+        source: "apple_icon.png"
+        size_hint: (.2,.2)
+        halign: "center"
+        pos: 700,300
+        on_release:
+            app.root.current= "mac"
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "pc1"
+
+#################Restart Pages
+
+<winRestart>:
+    name: "winrest"
+
+    Label:
+        text: "Great! To restart Windows, simply click on the Windows Icon (typically in the bottom left-hand\ncorner)\nThen, click on the POWER icon, then \"restart\""
+        color: 0,0,0,1
+        halign: "center"
+        pos: 50, 300
+        font_size: 20
+        font_name: "DejaVuSans"
+
+    Image:
+        source: "win_power.png"
+        size_hint: (.6,.6)
+        pos: 300,250
+
+    Label:
+        text: "Once your computer restarts, please login and tap the button below:"
+        color: 0,0,0,1
+        font_size: 16
+        font_name: "DejaVuSans"
+        pos: 50, -20
+
+    Button:
+        text: "My computer has rebooted"
+        size_hint: (.3,.1)
+        pos: 460,200
+        background_color: 0,1,1,1
+        font_size: 20
+        on_release:
+            app.root.current= "modstart"
+
+
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "pcrest"
+
+
+
+<macRestart>:
+    name: "mac"
+
+    Label:
+        text: "Restarting your MacOS/Apple device:"
+        color: 0,0,0,1
+        font_size: 24
+        bold: True
+        font_name: "DejaVuSans"
+        pos: 50, 300
+
+
+    Button:
+        text: "Back"
+        background_color: 0,1,1,1
+        font_size: 18
+        pos: -10, 600
+        size_hint: (.1,.1)
+        on_release:
+            app.root.current= "pcrest"
+
+    Image:
+        source:"mac_restart.png"
+        size_hint: (.4,.4)
+        pos: 400, 300
+
+    Label:
+        text: "To restart your MacOS computer, simply click on the Apple icon, and click \"restart\""
+        color: 0,0,0,1
+        font_size: 20
+        font_name: "DejaVuSans"
+        pos: 50, -60
+
+    Button:
+        text: "My Mac has rebooted successfully"
+        background_color: 0,1,1,1
+        size_hint: (.3, .1)
+        pos: 600, 30
+        on_release:
+            app.root.current= "modstart"
+
+    Button:
+        text: "I'm unable to reboot my PC"
+        background_color: 0,1,1,1
+        size_hint: (.3, .1)
+        pos: 200, 30
+        on_release:
+            app.root.current= "pcref"
+
+
+
+
+###### Plugging in the modem
+<modPlug>:
+    name: "modstart"
+
+    Label:
+        text: "You're doing an awesome job! Only a few more steps to go..."
+        color: 0,0,0,1
+        pos: 50, 300
+        font_size: 18
+        font_name: "DejaVuSans"
+        bold: True
+
+    Label:
+        text: "Now that your computer has rebooted, let's proceed to rebooting the modem!"
+        color: 0,0,0,1
+        pos: 50, 250
+        font_size: 20
+        font_name: "DejaVuSans"
+
+    Image:
+        source: "modem_1.png"
+        pos: 350,280
+        size_hint: (.4,.4)
+
+    Label:
+        text: "Step 1: Plug the POWER CORD into the POWER PORT of the modem\nStep 2: Wait for the lights to stabilize (the 'online' light should be solid)\nStep 3: Plug the ETHERNET CABLE into the ETHERNET PORT of the modem"
+        color: 0,0,0,1
+        pos: 50, -180
+        font_size: 24
+        bold: True
+
+
+    Button:
+        text: "Next"
+        background_color: 0,1,1,1
+        pos: 550, 20
+        size_hint: (.1,.1)
+        on_release:
+            app.root.current= "aftermboot"
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "pcrest"
+
+
+<noResolve>:
+    name: "nores"
+
+    Label:
+        text: "Bypassing your router"
+        color: 0,0,0,1
+        bold: True
+        underline: True
+        font_size: 24
+        font_name:"DejaVuSans"
+        pos: 50, 300
+
+    Image:
+        source: "router_hard.png"
+        size_hint: (.4,.4)
+        pos: 400,350
+
+    Label:
+        text:"If your computer has an ethernet cable connected, this should resemble your current setup.\nHowever, if you are connected via Wifi, you will need a device with an ethernet port, and an ethernet cable\nto perform the next step."
+        color: 0,0,0,1
+        font_size: 18
+        font_name: "DejaVuSans"
+        pos: 50, -20
+        halign: "center"
+
+    Button:
+        text:"Next"
+        background_color: 0,1,1,1
+        size_hint:(.1,.1)
+        pos: 550,200
+        font_size: 24
+        font_name: "DejaVuSans"
+        on_release:
+            app.root.current= "pcrest"
+
+    Label:
+        text: "ATTENTION: Please unplug the power cable from your modem/router before proceeding to the next step"
+        color: 1,0,0,1
+        font_size: 13
+        font_name: "DejaVuSans"
+        halign: "left"
+        pos: 50, 30
+        bold: True
+
+
+    Button:
+        text: "I'm not able to hardwire my device to the modem"
+        background_color: 0,1,1,1
+        color: 1,0,0,1
+        size_hint: (.3,.1)
+        pos: 440, 120
+        on_release:
+            app.root.current= "trans"
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "r2"
+
+
+<bypassRout>:
+    name: "bypassR"
+    Label:
+        text: "Great! Now, let's continue with bypassing your wifi router."
+        color: 0,0,0,1
+        font_size: 24
+        font_name: "DejaVuSans"
+        pos: 50, 300
+
+    Image:
+        source: "ethernet_port.png"
+        size_hint: (.4,.4)
+        pos: 400,350
+
+    Label:
+        text: "Step 1: Remove the POWER CABLE from the POWER PORT on your wifi ROUTER (this prevents issues with\n connecting to the modem)\nStep 2: Plug the ethernet cable from your MODEM, into your device."
+        color: 0,0,0,1
+        font_size: 18
+        font_name: "DejaVuSans"
+        pos: 50, -30
+        halign: "left"
+    Label:
+        text: "At this point, your device should automatically connect.\nHowever, if your device doesn't make a connection, you may need to contact your PC manufacturer for assistance."
+        color: 0,0,0,1
+        font_size: 14
+        font_name: "DejaVuSans"
+        pos: 30, -90
+        halign: "left"
+
+    Button:
+        text: "My device is connected, but still no internet"
+        background_color: 0,1,1,1
+        font_size: 16
+        font_name: "DejaVuSans"
+        pos: 400, 150
+        size_hint: (.4, .1)
+        on_release:
+            app.root.current= "trans"
+    Button:
+        text: "My device is connected, but not showing on device"
+        background_color: 0,1,1,1
+        font_size: 16
+        font_name: "DejaVuSans"
+        pos: 400, 80
+        size_hint: (.4, .1)
+        on_release:
+            app.root.current= "checkA"
+    Button:
+        text: "My issue has been resolved"
+        background_color: 0,1,1,1
+        font_size: 16
+        font_name: "DejaVuSans"
+        pos: 400, 10
+        size_hint: (.4, .1)
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "nores"
+
+<checkAdapt1>:
+    name: "checkA"
+    Label:
+        text: "WARNING: The next step could be considered \"advanced\" for some users.\nIf you are uncomfortable, we recommend contacting your manufacturer for assistance."
+        color: 1,0,0,1
+        font_size: 18
+        font_name: "DejaVuSans"
+        pos: 50, 300
+        bold: True
+
+    Label:
+        text: "Checking your device's adapter (PC only):"
+        bold: True
+        font_size: 24
+        color: 0,0,0,1
+        pos: 50, 200
+    Image:
+        source: "cmd_cap.PNG"
+        size_hint: (.4,.4)
+        pos: 400, 250
+
+    Label:
+        text:"First, you will need to open COMMAND PROMPT.\nYou can do this by holding the windows key and pressing \"r\"\n A window should appear with a search bar. Type \"cmd\" and press ENTER"
+        color: 0,0,0,1
+        pos: 50, -100
+        halign: "left"
+
+    Label:
+        text: "Once the command prompt is on the screen, type \"ping 127.0.0.1\" and press ENTER"
+        font_size: 18
+        font_name: "DejaVuSans"
+        pos: 50, -150
+        color: 0,0,0,1
+
+    Label:
+        text: "Under \"Ping statistics:\" if you see \"Packets: Sent=4, Received= 4\", this verifies that your network adapter is working."
+        font_size: 18
+        font_name: "DejaVuSans"
+        pos: 50, -200
+        color: 0,0,0,1
+
+    Button:
+        text: "I have no packet loss"
+        background_color: 0,1,1,1
+        size_hint: (.2,.1)
+        pos: 400,30
+        font_size: 18
+        on_release:
+            app.root.current= "ispcontact"
+
+
+    Button:
+        text: "I have packet loss"
+        background_color: 0,1,1,1
+        size_hint: (.2,.1)
+        pos: 700,30
+        font_size: 18
+        on_release:
+            app.root.current= "pcref"
+
+    Button:
+        text: "Tap here for MacOS instructions"
+        size_hint: (.25, .1)
+        font_size: 18
+        background_color: 0,1,1,1
+        pos: 60, 300
+        on_release:
+            app.root.current= "macA"
+
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "bypassR"
+
+<ispRef>:
+    name: "ispcontact"
+
+    Label:
+        text: "Based on the results of this troubleshooting session, we've determined the issue may likely be on your provider's end."
+        color: 0,0,0,1
+
+    Button:
+        text: "Back to Main Screen"
+        background_color: 0,1,1,1
+        size_hint: (.2,.1)
+        pos: 500, 40
+        on_release:
+            app.root.current="start"
+
+    Button:
+        text: "Help me find my provider's support number"
+        background_color: 0,1,1,1
+        size_hint: (.4, .1)
+        pos: 400, 120
+        font_size: 20
+        on_release:
+            webbrowser.open("https://broadbandnow.com/")
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "start"
+
+
+<afterBoot>:
+    name: "aftermboot"
+
+    Label:
+        text: "Now that the modem has successfully rebooted, and your device is connected via ethernet,\nyou should have a connection."
+        color: 0,0,0,1
+        font_size: 16
+        font_name: "DejaVuSans"
+
+    Button:
+        text: "My issue is resolved"
+        background_color: 0,1,1,1
+        font_size: 18
+        size_hint: (.3, .1)
+        pos: 200, 60
+        on_release:
+            app.root.current= "start"
+
+    Button:
+        text: "My issue is NOT resolved"
+        background_color: 0,1,1,1
+        font_size: 18
+        size_hint: (.3, .1)
+        pos: 600, 60
+        on_release:
+            app.root.current= "checkA"
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "modstart"
+
+<pcManu>:
+    name:"pcref"
+
+    Label:
+        text: "Based on the results of this troubleshooting session, we've determined that there's an issue with your device.\nWe recommend reaching out to the manufacturer of your device to troubleshoot:"
+        color: 0,0,0,1
+        font_size: 18
+        pos: 50, 300
+        bold: True
+
+
+    Button:
+        text: "Find My Device Manufacturer"
+        background_color: 0,1,1,1
+        size_hint: (.3, .3)
+        font_size: 18
+        font_name: "DejaVuSans"
+        pos: 450, 300
+        on_release:
+            webbrowser.open("https://www.intel.com/content/www/us/en/support/topics/OEMs.html")
+
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "start"
+
+
+<macAdapt>:
+    name: "macA"
+
+    Label:
+        text: "WARNING: The next step could be considered \"advanced\" for some users.\nIf you are uncomfortable, we recommend contacting your manufacturer for assistance."
+        color: 1,0,0,1
+        font_size: 18
+        font_name: "DejaVuSans"
+        pos: 50, 300
+        bold: True
+
+    Label:
+        text: "Checking your device's adapter (Mac):"
+        bold: True
+        font_size: 24
+        color: 0,0,0,1
+        pos: 50, 200
+    Image:
+        source: "mac_ping.png"
+        size_hint: (.4,.4)
+        pos: 400, 250
+
+    Button:
+        text: "I have no packet loss"
+        background_color: 0,1,1,1
+        size_hint: (.2,.1)
+        pos: 400,30
+        font_size: 18
+        on_release:
+            app.root.current= "ispcontact"
+
+
+    Button:
+        text: "I have packet loss"
+        background_color: 0,1,1,1
+        size_hint: (.2,.1)
+        pos: 700,30
+        font_size: 18
+        on_release:
+            app.root.current= "pcref"
+
+    BackButton:
+        source: "back.png"
+        size_hint: (.1,.1)
+        pos: -20, 600
+        on_release:
+            app.root.current= "bypassR"
